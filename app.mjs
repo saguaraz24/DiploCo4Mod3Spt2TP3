@@ -1,7 +1,7 @@
 import express from 'express';
 import {connectDB} from './src/config/dbConfig.mjs'
 import superHeroRoutes from './src/routes/superHeroRoutes.mjs';
-//C:\Users\sagua\DiploCo2Mod3\DiploCo2Mod3Spt2TP3\config\dbConfig.mjs
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 

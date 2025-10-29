@@ -3,7 +3,8 @@ import {
     obtenerSuperheroePorIdController,
     obtenerTodosLosSuperheroesController,
     buscarSuperheroesPorAtributoController,
-    obtenerSuperheroesMayoresDe30Controller
+    obtenerSuperheroesMayoresDe30Controller,
+    obtenerSuperheroesMenoresDe30Controller
 } from '../controllers/superheroesController.mjs';
 //import { obtenerSuperheroesMayoresDe30 } from '../services/superheroeService.mjs';
 
@@ -12,5 +13,10 @@ router .get('/heroes', obtenerTodosLosSuperheroesController);
 router .get('/heroesid/:id', obtenerSuperheroePorIdController);
 router .get('/heroesat/buscar/:atributo/:valor', buscarSuperheroesPorAtributoController);
 router .get('/heroes/mayores-30', obtenerSuperheroesMayoresDe30Controller);
+router .get('/heroes/menores', obtenerSuperheroesMenoresDe30Controller);
+
+//router.get("/superheroes/menores", superHeroController.obtenerSuperheroesMenoresDe30Controller);
+
+
 export default router;
 

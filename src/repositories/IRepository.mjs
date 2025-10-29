@@ -15,6 +15,10 @@ obtenerMayoresDe30(){
     throw new Error("Método 'obtenerMayoresDe30()' no implementado");
     }       
 
+obtenerMenoresDe30(){
+    throw new Error("Método 'obtenerMenoresDe30()' no implementado");
+    } 
+
 }
 export default IRepository;
 

@@ -1,5 +1,5 @@
 //import SuperHeroRepository from "../repositories/SuperHeroRepository.mjs";
-import { obtenerSuperheroePorId,obtenerTodosLosSuperheroes,buscarSuperheroesPorAtributo, obtenerSuperheroesMayoresDe30 } from "../services/superheroesService.mjs";
+import { obtenerSuperheroePorId,obtenerTodosLosSuperheroes,buscarSuperheroesPorAtributo, obtenerSuperheroesMayoresDe30, obtenerSuperheroesMenoresDe30 } from "../services/superheroesService.mjs";
 import {renderizarSuperheroe, renderizaListaSuperheroes} from '../views/responsiveView.mjs';
 //import mongoose from "mongoose";
                                 
@@ -69,4 +69,20 @@ export async function obtenerSuperheroesMayoresDe30Controller(req, res){
                 
             }
         }
- 
+
+                              
+export async function obtenerSuperheroesMenoresDe30Controller(req, res) {
+  try { 
+    const superheroes = await obtenerSuperheroesMenoresDe30();
+    if(superheroes.length === 0){
+            return res.status(404).send(
+                {mensaje: "No se encontraron super Heroes menores de 30 años"});
+            }
+            const superheroeFormateados = renderizaListaSuperheroes(superheroes);
+            res.status(200).json(superheroeFormateados);
+  } catch (error) {
+    console.error("Error al obtener superhéroes menores de 30:", error);
+    res.status(500).json({ mensaje: "Error al obtener superhéroes menores de 30" });
+  }
+}
+
