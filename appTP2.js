@@ -1,7 +1,12 @@
+const express = require('express');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://Grupo-14:grupo14@cursadanodejs.ls9ii.mongodb.net/Node-js')
 .then(()=> console.log('Conexión exitosa a MongoDB'))
 .catch(error=>console.error('Error al conectar a MongoDB: ',error) );
+
+const app = express();
+app.use(express.json()); // permite leer JSON en el body de las peticiones
+
 
 const superheroSchema=new mongoose.Schema({
     nombreSuperHeroe: {type:String, required:true},
@@ -33,7 +38,7 @@ async function insertSuperHero(){
     await hero.save();
     console.log('Superheroe insertado',hero);
 }
-insertSuperHero();
+//insertSuperHero();
 
 async function updateSuperHero(nombreSuperHeroe){
     const result = await SuperHero.updateOne(
@@ -56,7 +61,54 @@ async function findSuperHeroes(){
 }
 //findSuperHeroes();
 
+//********************* */
+
+// Insertar superhéroe
+app.post('/superheroes', async (req, res) => {
+  try {
+    const hero = new SuperHero(req.body);
+    const savedHero = await hero.save();
+    res.status(201).json(savedHero);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al insertar superhéroe', detalle: error });
+  }
+});
+
+// Listar todos los superhéroes
+app.get('/superheroes', async (req, res) => {
+  const heroes = await SuperHero.find();
+  res.json(heroes);
+});
+
+// Actualizar edad o cualquier campo
+app.put('/superheroes/:nombre', async (req, res) => {
+  const { nombre } = req.params;
+  const nuevosDatos = req.body;
+
+  try {
+    const result = await SuperHero.updateOne(
+      { nombreSuperHeroe: nombre },
+      { $set: nuevosDatos }
+    );
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al actualizar', detalle: error });
+  }
+});
+
+// Eliminar superhéroe
+app.delete('/superheroes/:nombreSuperHeroe', async (req, res) => {
+  try {
+    const nombre = decodeURIComponent(req.params.nombreSuperHeroe);
+    const result = await SuperHero.deleteOne({ nombreSuperHeroe: nombre });
+    res.json(result);
+  } catch (error) {
+    console.error('Error al eliminar superhéroe:', error);
+    res.status(500).json({ error: 'Error al eliminar el superhéroe' });
+  }
+});
 
 
 
-
+// Iniciar servidor
+app.listen(3000, () => console.log('🌐 Servidor corriendo en http://localhost:3000'));

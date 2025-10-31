@@ -86,3 +86,17 @@ export async function obtenerSuperheroesMenoresDe30Controller(req, res) {
   }
 }
 
+
+
+const SuperHeroe = require('../models/SuperHeroe');
+
+// Crear nuevo superhéroe
+exports.crearHeroe = async (req, res) => {
+  try {
+    const nuevoHeroe = new SuperHeroe(req.body);
+    await nuevoHeroe.save();
+    res.status(201).json({ mensaje: 'Superhéroe insertado correctamente', heroe: nuevoHeroe });
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al insertar el superhéroe', error });
+  }
+};

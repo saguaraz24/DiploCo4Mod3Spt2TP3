@@ -1,0 +1,24 @@
+{
+  "name": "425diplosp2",
+  "version": "1.0.0",
+  "main": "appTP2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://saguaraz24@github.com/saguaraz24/DiploCo4Mod3Spt2TP3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saguaraz24/DiploCo4Mod3Spt2TP3/issues"
+  },
+  "homepage": "https://github.com/saguaraz24/DiploCo4Mod3Spt2TP3#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.19.2"
+  }
+}
