@@ -11,12 +11,12 @@ buscarPorAtributo(atributo, valor){
     throw new Error("Método `buscarPorAtributo()` no implementado");
 }
 
-obtenerMayoresDe30(){
-    throw new Error("Método 'obtenerMayoresDe30()' no implementado");
+obtenerMayoresDe30TP(){
+    throw new Error("Método 'obtenerMayoresDe30TP()' no implementado");
     }       
 
-obtenerMenoresDe30(){
-    throw new Error("Método 'obtenerMenoresDe30()' no implementado");
+obtenerMenoresDe30TP(){
+    throw new Error("Método 'obtenerMenoresDe30TP()' no implementado");
     } 
 
 }

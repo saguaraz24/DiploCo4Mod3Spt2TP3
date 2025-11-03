@@ -13,11 +13,11 @@ export async function buscarSuperheroesPorAtributo(atributo,valor) {
     //return superHeroRepository.buscarPorAtributo({[atributo]: valor});
 }
 
-export async function obtenerSuperheroesMayoresDe30(atributo,valor) {
-    return await superHeroRepository.obtenerMayoresDe30();
+export async function obtenerSuperheroesMayoresDe30TP(atributo,valor) {
+    return await superHeroRepository.obtenerMayoresDe30TP();
 }
 
-export async function obtenerSuperheroesMenoresDe30(tributo,valor) {
-  return await superHeroRepository.obtenerMenoresDe30();
+export async function obtenerSuperheroesMenoresDe30TP(tributo,valor) {
+  return await superHeroRepository.obtenerMenoresDe30TP();
 }
 

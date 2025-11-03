@@ -1,18 +1,21 @@
 //import SuperHeroRepository from "../repositories/SuperHeroRepository.mjs";
-import { obtenerSuperheroePorId,obtenerTodosLosSuperheroes,buscarSuperheroesPorAtributo, obtenerSuperheroesMayoresDe30, obtenerSuperheroesMenoresDe30 } from "../services/superheroesService.mjs";
+import { obtenerSuperheroePorId,obtenerTodosLosSuperheroes,buscarSuperheroesPorAtributo, obtenerSuperheroesMayoresDe30TP, obtenerSuperheroesMenoresDe30TP} from "../services/superheroesService.mjs";
 import {renderizarSuperheroe, renderizaListaSuperheroes} from '../views/responsiveView.mjs';
 //import mongoose from "mongoose";
                                 
 export async function obtenerSuperheroePorIdController(req,res) {
+    console.log("Controlador recibe petición GET /superheroes/:id");
    try{
         const{id} = req.params;
+        console.log(`controlador recibe id: ${id}`)
 
         // Verifica si el ID es válido antes de hacer la consulta
         // if (!mongoose.Types.ObjectId.isValid(id)) {
         //     return res.status(400).json({ mensaje: "ID no válido para MongoDB" });
         // }
-        console.log(`Por ID Requerimiento, ${id}`);
+       // console.log(`Por ID Requerimiento, ${id}`);
         const superheroe = await obtenerSuperheroePorId(id);
+        console.log('Respuesta recibida desde servicio: ', superheroe.length, "registros");
         if (!superheroe)
                 {
                 return res.status(404).send({mensaje: "Superheroe no encontrado"});
@@ -54,9 +57,9 @@ export async function buscarSuperheroesPorAtributoController(req,res){
     }
 }
 
-export async function obtenerSuperheroesMayoresDe30Controller(req, res){
+export async function obtenerSuperheroesMayoresDe30TPController(req, res){
     try{
-        const superheroes = await obtenerSuperheroesMayoresDe30();
+        const superheroes = await obtenerSuperheroesMayoresDe30TP();
         if(superheroes.length === 0){
             return res.status(404).send(
                 {mensaje: "No se encontraron super Heroes mayores de 30 años"});
@@ -71,9 +74,9 @@ export async function obtenerSuperheroesMayoresDe30Controller(req, res){
         }
 
                               
-export async function obtenerSuperheroesMenoresDe30Controller(req, res) {
+export async function obtenerSuperheroesMenoresDe30TPController(req, res) {
   try { 
-    const superheroes = await obtenerSuperheroesMenoresDe30();
+    const superheroes = await obtenerSuperheroesMenoresDe30TPController();
     if(superheroes.length === 0){
             return res.status(404).send(
                 {mensaje: "No se encontraron super Heroes menores de 30 años"});
@@ -87,16 +90,3 @@ export async function obtenerSuperheroesMenoresDe30Controller(req, res) {
 }
 
 
-
-const SuperHeroe = require('../models/SuperHeroe');
-
-// Crear nuevo superhéroe
-exports.crearHeroe = async (req, res) => {
-  try {
-    const nuevoHeroe = new SuperHeroe(req.body);
-    await nuevoHeroe.save();
-    res.status(201).json({ mensaje: 'Superhéroe insertado correctamente', heroe: nuevoHeroe });
-  } catch (error) {
-    res.status(500).json({ mensaje: 'Error al insertar el superhéroe', error });
-  }
-};

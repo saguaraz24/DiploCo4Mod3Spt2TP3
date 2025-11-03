@@ -7,9 +7,9 @@ export function renderizarSuperheroe(superheroe){
         Edad: superheroe.edad,
         "Planeta de Origen": superheroe.planetaOrigen,
         Debilidad: superheroe.debilidad,
-        Poderes: superheroe.poderes,
-        Aliados: superheroe.aliados,
-        Enemigos: superheroe.enemigos
+        Poderes: superheroe.poder,
+        Aliados: superheroe.aliado,
+        Enemigos: superheroe.enemigo
     };
 }
 

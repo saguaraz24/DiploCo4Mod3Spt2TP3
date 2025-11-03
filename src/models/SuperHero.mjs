@@ -8,9 +8,9 @@ const superheroSchema=new mongoose.Schema({
     edad:{type:Number, min:0},
     planetaOrigen: {type: String, default:"Desconocido"},
     debilidad: String,
-    poderes: [String],
-    aliados: [String],
-    enemigos:[String],
+    poder: [String],
+    aliado: [String],
+    enemigo:[String],
     createdAt: {type:Date,default:Date.now},
     creador:{type:String, default:'Sebastián Guaraz'}
 });
